@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'RandomQuotes\\RandomQuotes' => $vendorDir . '/ajaz/random-quotes-generator-php/src/RandomQuotes.php',
 );

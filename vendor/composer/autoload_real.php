@@ -22,14 +22,14 @@ class ComposerAutoloaderInitf4452ccdeb577f36297a59f61c9a8f48
             return self::$loader;
         }
 
-        spl_autoload_register(array('ComposerAutoloaderInitf4452ccdeb577f36297a59f61c9a8f48', 'loadClassLoader'), true, true);
+        spl_autoload_register(array('ComposerAutoloaderInitf4452ccdeb577f36297a59f61c9a8f48', 'loadClassLoader'), true, false);
         self::$loader = $loader = new \Composer\Autoload\ClassLoader(\dirname(__DIR__));
         spl_autoload_unregister(array('ComposerAutoloaderInitf4452ccdeb577f36297a59f61c9a8f48', 'loadClassLoader'));
 
         require __DIR__ . '/autoload_static.php';
         call_user_func(\Composer\Autoload\ComposerStaticInitf4452ccdeb577f36297a59f61c9a8f48::getInitializer($loader));
 
-        $loader->register(true);
+        $loader->register(false);
 
         return $loader;
     }

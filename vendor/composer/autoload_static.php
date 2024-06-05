@@ -30,6 +30,7 @@ class ComposerStaticInitf4452ccdeb577f36297a59f61c9a8f48
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'RandomQuotes\\RandomQuotes' => __DIR__ . '/..' . '/ajaz/random-quotes-generator-php/src/RandomQuotes.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
