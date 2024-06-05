@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "034a597936c22215db806760afdb01dc",
+    "content-hash": "15d155b7f6e2f549ae9e076d94aa87c0",
     "packages": [
         {
             "name": "ajaz/random-quotes-generator-php",
@@ -52,5 +52,8 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
+    "platform-overrides": {
+        "php": "8.1.23"
+    },
     "plugin-api-version": "2.6.0"
 }

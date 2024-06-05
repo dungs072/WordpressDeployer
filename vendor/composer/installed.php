@@ -3,7 +3,7 @@
         'name' => 'dungs72/fs72store',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'b09f510acdf4423d86d7f47dc96a3f4665f3ac3b',
+        'reference' => 'a7dfd8974d7ccbd172c882b34835e0e4499732e6',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'dungs72/fs72store' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'b09f510acdf4423d86d7f47dc96a3f4665f3ac3b',
+            'reference' => 'a7dfd8974d7ccbd172c882b34835e0e4499732e6',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

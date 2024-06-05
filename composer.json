@@ -9,5 +9,12 @@
         "psr-4": {
             "App\\": "src/"
         }
-    }
+    },
+    "config": {
+		"optimize-autoloader": true,
+		"prepend-autoloader": false,
+		"platform": {
+			"php": "8.1.23"
+		}
+	}
 }
