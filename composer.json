@@ -3,6 +3,7 @@
     "description": "Wordpress project combines with woocommerce using CI/CD",
     "license": "MIT",
     "require": {
+        "ajaz/random-quotes-generator-php":"^1.0"
     },
     "autoload": {
         "psr-4": {

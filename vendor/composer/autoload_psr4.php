@@ -6,5 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'RandomQuotes\\' => array($vendorDir . '/ajaz/random-quotes-generator-php/src'),
     'App\\' => array($baseDir . '/src'),
 );

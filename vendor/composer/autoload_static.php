@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInitf4452ccdeb577f36297a59f61c9a8f48
 {
     public static $prefixLengthsPsr4 = array (
+        'R' => 
+        array (
+            'RandomQuotes\\' => 13,
+        ),
         'A' => 
         array (
             'App\\' => 4,
@@ -14,6 +18,10 @@ class ComposerStaticInitf4452ccdeb577f36297a59f61c9a8f48
     );
 
     public static $prefixDirsPsr4 = array (
+        'RandomQuotes\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ajaz/random-quotes-generator-php/src',
+        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
