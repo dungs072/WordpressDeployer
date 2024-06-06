@@ -5,7 +5,7 @@ final class ThemeModTest extends TestCase
 {
     private $themeMods;
 
-    public function setUp()
+    public function setUp():void
     {
         $this->themeMods = array();
     }
