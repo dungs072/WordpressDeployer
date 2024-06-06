@@ -9,36 +9,72 @@
  */
 namespace PHPUnit\Util\Xml;
 
+use function assert;
+use function defined;
 use function is_file;
+use function rsort;
 use function sprintf;
+use DirectoryIterator;
+use PHPUnit\Runner\Version;
 
 /**
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
- *
- * @psalm-immutable
  */
 final class SchemaFinder
 {
+    /**
+     * @psalm-return non-empty-list<non-empty-string>
+     */
+    public function available(): array
+    {
+        $result = [Version::series()];
+
+        foreach ((new DirectoryIterator($this->path() . 'schema')) as $file) {
+            if ($file->isDot()) {
+                continue;
+            }
+
+            $version = $file->getBasename('.xsd');
+
+            assert(!empty($version));
+
+            $result[] = $version;
+        }
+
+        rsort($result);
+
+        return $result;
+    }
+
     /**
      * @throws Exception
      */
     public function find(string $version): string
     {
-        if (defined('__PHPUNIT_PHAR_ROOT__')) {
-            $filename = __PHPUNIT_PHAR_ROOT__ . '/schema/' . $version . '.xsd';
+        if ($version === Version::series()) {
+            $filename = $this->path() . 'phpunit.xsd';
         } else {
-            $filename = __DIR__ . '/../../../schema/' . $version . '.xsd';
+            $filename = $this->path() . 'schema/' . $version . '.xsd';
         }
 
         if (!is_file($filename)) {
             throw new Exception(
                 sprintf(
                     'Schema for PHPUnit %s is not available',
-                    $version
-                )
+                    $version,
+                ),
             );
         }
 
         return $filename;
+    }
+
+    private function path(): string
+    {
+        if (defined('__PHPUNIT_PHAR_ROOT__')) {
+            return __PHPUNIT_PHAR_ROOT__ . '/';
+        }
+
+        return __DIR__ . '/../../../';
     }
 }

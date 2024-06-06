@@ -11,6 +11,7 @@ namespace PHPUnit\Framework;
 
 use function array_filter;
 use function array_map;
+use function array_values;
 use function count;
 use function explode;
 use function in_array;
@@ -73,10 +74,11 @@ final class ExecutionOrderDependency
         return array_values(
             array_filter(
                 $dependencies,
-                static function (self $d) {
+                static function (self $d)
+                {
                     return $d->isValid();
-                }
-            )
+                },
+            ),
         );
     }
 
@@ -89,10 +91,11 @@ final class ExecutionOrderDependency
     public static function mergeUnique(array $existing, array $additional): array
     {
         $existingTargets = array_map(
-            static function ($dependency) {
+            static function ($dependency)
+            {
                 return $dependency->getTarget();
             },
-            $existing
+            $existing,
         );
 
         foreach ($additional as $dependency) {
@@ -125,10 +128,11 @@ final class ExecutionOrderDependency
 
         $diff         = [];
         $rightTargets = array_map(
-            static function ($dependency) {
+            static function ($dependency)
+            {
                 return $dependency->getTarget();
             },
-            $right
+            $right,
         );
 
         foreach ($left as $dependency) {

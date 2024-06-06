@@ -9,6 +9,7 @@
  */
 namespace PHPUnit\TextUI\CliArguments;
 
+use function array_map;
 use function array_merge;
 use function class_exists;
 use function explode;
@@ -17,10 +18,10 @@ use function str_replace;
 use PHPUnit\Runner\TestSuiteSorter;
 use PHPUnit\TextUI\DefaultResultPrinter;
 use PHPUnit\TextUI\XmlConfiguration\Extension;
-use PHPUnit\Util\Exception as UtilException;
-use PHPUnit\Util\Getopt;
 use PHPUnit\Util\Log\TeamCity;
 use PHPUnit\Util\TestDox\CliTestDoxPrinter;
+use SebastianBergmann\CliParser\Exception as CliParserException;
+use SebastianBergmann\CliParser\Parser as CliParser;
 
 /**
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
@@ -38,8 +39,11 @@ final class Builder
         'colors==',
         'columns=',
         'configuration=',
+        'coverage-cache=',
+        'warm-coverage-cache',
         'coverage-filter=',
         'coverage-clover=',
+        'coverage-cobertura=',
         'coverage-crap4j=',
         'coverage-html=',
         'coverage-php=',
@@ -58,6 +62,8 @@ final class Builder
         'generate-configuration',
         'globals-backup',
         'group=',
+        'covers=',
+        'uses=',
         'help',
         'resolve-dependencies',
         'ignore-dependencies',
@@ -94,8 +100,10 @@ final class Builder
         'stop-on-risky',
         'stop-on-skipped',
         'fail-on-empty-test-suite',
-        'fail-on-warning',
+        'fail-on-incomplete',
         'fail-on-risky',
+        'fail-on-skipped',
+        'fail-on-warning',
         'strict-coverage',
         'disable-coverage-ignore',
         'strict-global-state',
@@ -113,22 +121,21 @@ final class Builder
         'whitelist=',
         'dump-xdebug-filter=',
     ];
-
     private const SHORT_OPTIONS = 'd:c:hv';
 
     public function fromParameters(array $parameters, array $additionalLongOptions): Configuration
     {
         try {
-            $options = Getopt::parse(
+            $options = (new CliParser)->parse(
                 $parameters,
                 self::SHORT_OPTIONS,
-                array_merge(self::LONG_OPTIONS, $additionalLongOptions)
+                array_merge(self::LONG_OPTIONS, $additionalLongOptions),
             );
-        } catch (UtilException $e) {
+        } catch (CliParserException $e) {
             throw new Exception(
                 $e->getMessage(),
-                (int) $e->getCode(),
-                $e
+                $e->getCode(),
+                $e,
             );
         }
 
@@ -145,8 +152,11 @@ final class Builder
         $colors                                     = null;
         $columns                                    = null;
         $configuration                              = null;
+        $coverageCacheDirectory                     = null;
+        $warmCoverageCache                          = null;
         $coverageFilter                             = null;
         $coverageClover                             = null;
+        $coverageCobertura                          = null;
         $coverageCrap4J                             = null;
         $coverageHtml                               = null;
         $coveragePhp                                = null;
@@ -175,6 +185,8 @@ final class Builder
         $generateConfiguration                      = null;
         $migrateConfiguration                       = null;
         $groups                                     = null;
+        $testsCovering                              = null;
+        $testsUsing                                 = null;
         $help                                       = null;
         $includePath                                = null;
         $iniSettings                                = [];
@@ -265,8 +277,23 @@ final class Builder
 
                     break;
 
+                case '--coverage-cache':
+                    $coverageCacheDirectory = $option[1];
+
+                    break;
+
+                case '--warm-coverage-cache':
+                    $warmCoverageCache = true;
+
+                    break;
+
                 case '--coverage-clover':
                     $coverageClover = $option[1];
+
+                    break;
+
+                case '--coverage-cobertura':
+                    $coverageCobertura = $option[1];
 
                     break;
 
@@ -357,6 +384,16 @@ final class Builder
 
                 case '--exclude-group':
                     $excludeGroups = explode(',', $option[1]);
+
+                    break;
+
+                case '--covers':
+                    $testsCovering = array_map('strtolower', explode(',', $option[1]));
+
+                    break;
+
+                case '--uses':
+                    $testsUsing = array_map('strtolower', explode(',', $option[1]));
 
                     break;
 
@@ -527,7 +564,7 @@ final class Builder
 
                     break;
 
-                case '--fail-on-Skipped':
+                case '--fail-on-skipped':
                     $failOnSkipped = true;
 
                     break;
@@ -767,6 +804,7 @@ final class Builder
             $columns,
             $configuration,
             $coverageClover,
+            $coverageCobertura,
             $coverageCrap4J,
             $coverageHtml,
             $coveragePhp,
@@ -775,6 +813,8 @@ final class Builder
             $coverageTextShowOnlySummary,
             $coverageXml,
             $pathCoverage,
+            $coverageCacheDirectory,
+            $warmCoverageCache,
             $debug,
             $defaultTimeLimit,
             $disableCodeCoverageIgnore,
@@ -795,6 +835,8 @@ final class Builder
             $generateConfiguration,
             $migrateConfiguration,
             $groups,
+            $testsCovering,
+            $testsUsing,
             $help,
             $includePath,
             $iniSettings,
@@ -838,7 +880,7 @@ final class Builder
             $verbose,
             $version,
             $coverageFilter,
-            $xdebugFilterFile
+            $xdebugFilterFile,
         );
     }
 }
