@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
-include('wp-content/themes/blocksy/inc/classes/database.php');
+include('/wp-content/themes/blocksy/inc/classes/database.php');
 final class ThemeModTest extends TestCase
 {
     private $themeMods;
