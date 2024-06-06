@@ -71,7 +71,7 @@ final class ThemeModTest extends TestCase
 
     private function getThemeMod($name, $defaultValue = false)
     {
-        $myDatabase = new Database();
+        $myDatabase = new Blocksy.Database();
         return $myDatabase->getThemeMod($name, $defaultValue);
     }
 }
