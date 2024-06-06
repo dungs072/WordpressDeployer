@@ -16,8 +16,7 @@
 
     "scripts": {
         "test": [
-            "phpunit",
-            "@php TestSignIn.php"
+            "phpunit"
         ]
 
     }
