@@ -1,6 +1,8 @@
 <?php declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
-include('wp-content/themes/blocksy/inc/classes/database.php');
+$filepath = realpath (dirname('wp-content/themes/blocksy/inc/classes'));
+require_once($filepath."/database.php");
+include();
 final class ThemeModTest extends TestCase
 {
     private $themeMods;
