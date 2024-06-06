@@ -2,6 +2,7 @@
 use PHPUnit\Framework\TestCase;
 $filepath = realpath (dirname('wp-content/themes/blocksy/inc/classes'));
 require_once($filepath."/classes/database.php");
+use Blocksy\Database;
 final class ThemeModTest extends TestCase
 {
     private $themeMods;
@@ -71,7 +72,7 @@ final class ThemeModTest extends TestCase
 
     private function getThemeMod($name, $defaultValue = false)
     {
-        $myDatabase = new Blocksy.Database();
+        $myDatabase = new Database();
         return $myDatabase->getThemeMod($name, $defaultValue);
     }
 }
