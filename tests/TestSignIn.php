@@ -1,12 +1,18 @@
 <?php
 
-// Mock functions for testing
-function mock_add_filter($tag, $function) {
-  // Assert that the functions being added are the expected ones
-  expect($tag)->toBe('wp_robots');
-  expect($function)->toBe('wp_robots_sensitive_page');
+class TestSignIn extends \PHPUnit\FrameWork\TestCase{
 
-  // Assert that the functions being added are the expected ones (for referrer)
-  expect($tag)->toBe('login_head');
-  expect($function)->toBe('wp_strict_cross_origin_referrer');
+  function test_login_header_shakes_form_with_errors() {
+    $original_apply_filters = apply_filters;
+    apply_filters = mock_apply_filters;
+  
+    $wp_error = new WP_Error();
+    login_header($title="Test Title", $message="Test Message", $wp_error);
+  
+    apply_filters = $original_apply_filters;
+  
+    $added_actions = did_action('login_footer');
+    expect($added_actions)->toBe(1);
+  }
 }
+
