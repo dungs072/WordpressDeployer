@@ -15,7 +15,11 @@
     },
 
     "scripts": {
-        "test": "phpunit"
+        "test": [
+            "phpunit",
+            "TestSignIn"
+        ]
+
     }
 
 }
