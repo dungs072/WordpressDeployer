@@ -113,7 +113,7 @@ function wpmu_activate_stylesheet() {
 		span.h3 { padding: 0 8px; font-size: 1.3em; font-weight: 600; }
 	</style>
 	<?php
-
+}
 add_action( 'wp_head', 'wpmu_activate_stylesheet' );
 add_action( 'wp_head', 'wp_strict_cross_origin_referrer' );
 add_filter( 'wp_robots', 'wp_robots_sensitive_page' );
