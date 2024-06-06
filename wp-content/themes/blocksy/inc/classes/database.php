@@ -2,7 +2,7 @@
 
 namespace Blocksy;
 
-public class Database {
+class Database {
 	private $mods = '__EMPTY__';
 
 	public function get_theme_mod($name, $default_value = false) {
