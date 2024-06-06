@@ -73,7 +73,7 @@ final class ThemeModTest extends TestCase
     private function getThemeMod($name, $defaultValue = false)
     {
         $myDatabase = new Database();
-        return $myDatabase->getThemeMod($name, $defaultValue);
+        return $myDatabase->get_theme_mod($name, $defaultValue);
     }
 }
 
