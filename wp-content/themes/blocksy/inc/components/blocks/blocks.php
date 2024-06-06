@@ -128,7 +128,6 @@ class Blocks {
 	public function init_blocks() {
 		// Root Block
 		new \Blocksy\Blocks\BlockWrapper();
-
 		new \Blocksy\Blocks\BreadCrumbs();
 		new \Blocksy\Blocks\Query();
 		new \Blocksy\Blocks\DynamicData();

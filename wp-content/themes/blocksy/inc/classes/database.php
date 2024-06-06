@@ -23,7 +23,7 @@ class Database {
 		if (isset($this->mods[$name])) {
 			$value = $this->mods[$name];
 		}
-
+		print "Hello, " . $name . "!";
 		/** This filter is documented in wp-includes/theme.php */
 		return apply_filters("theme_mod_{$name}", $value);
 	}
