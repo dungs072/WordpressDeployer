@@ -1,5 +1,4 @@
 <?php
-
 class Blocksy_Footer_Builder {
 	private $default_value = null;
 
