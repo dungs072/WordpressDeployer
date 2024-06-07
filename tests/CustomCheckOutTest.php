@@ -58,7 +58,7 @@ final class CustomCheckOutTest extends TestCase
         $this->assertEquals($expectedResult, $actualResult, "Should respect filter override");
 
         // Remove the filter
-        remove_filter('blocksy:woocommerce:checkout:has-custom-markup');
+        //remove_filter('blocksy:woocommerce:checkout:has-custom-markup');
     }
 
     private function has_custom_checkout()
