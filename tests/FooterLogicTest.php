@@ -36,12 +36,6 @@ final class FooterLogicTest extends TestCase
             ],
         ];
 
-        // Mock or replace get_structure_for calls with your assertion logic
-        $this->myClass->expects($this->any())
-            ->method('get_structure_for')
-            ->with($this->equalTo(['id' => 'type-1']))
-            ->willReturn($expectedType1Structure);
-
         $default = $this->myClass->get_default_value();
         $this->assertEquals($expectedType1Structure, $default['sections'][0]);
     }
@@ -62,12 +56,6 @@ final class FooterLogicTest extends TestCase
                 ],
             ],
         ];
-
-        // Mock or replace get_structure_for calls with your assertion logic
-        $this->myClass->expects($this->any())
-            ->method('get_structure_for')
-            ->with($this->equalTo(['id' => 'type-2']))
-            ->willReturn($expectedType2Structure);
 
         $default = $this->myClass->get_default_value();
         $this->assertEquals($expectedType2Structure, $default['sections'][1]);
