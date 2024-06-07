@@ -64,7 +64,6 @@ final class CustomCheckOutTest extends TestCase
 
     private function has_custom_checkout()
     {
-        $checkout = new WooCommerceCheckout();
-        return $checkout->has_custom_checkout();
+        return WooCommerceCheckout::has_custom_checkout();
     }
 }

@@ -191,7 +191,7 @@ class WooCommerceCheckout {
 		);
 	}
 
-	public function has_custom_checkout() {
+	public static function has_custom_checkout() {
 		$has_custom_checkout = true;
 
 		if (class_exists('FluidCheckout')) {
