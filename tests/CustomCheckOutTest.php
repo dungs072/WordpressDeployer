@@ -19,13 +19,13 @@ final class CustomCheckOutTest extends TestCase
 
         // Scenario 1: No custom checkout plugins or Cartflows step
         $expectedResult = true;
-        $actualResult = has_custom_checkout();
+        $actualResult = $this->has_custom_checkout();
         assertEquals($expectedResult, $actualResult, "Should return true without custom checkout plugins or Cartflows step");
 
         // Scenario 2: FluidCheckout exists
         class_exists('FluidCheckout', true); // Mock the existence of FluidCheckout class
         $expectedResult = false;
-        $actualResult = has_custom_checkout();
+        $actualResult = $this->has_custom_checkout();
         assertEquals($expectedResult, $actualResult, "Should return false with FluidCheckout class");
 
         // Reset the mock
@@ -34,7 +34,7 @@ final class CustomCheckOutTest extends TestCase
         // Scenario 3: WFFN_Core exists
         class_exists('WFFN_Core', true); // Mock the existence of WFFN_Core class
         $expectedResult = false;
-        $actualResult = has_custom_checkout();
+        $actualResult = $this->has_custom_checkout();
         assertEquals($expectedResult, $actualResult, "Should return false with WFFN_Core class");
 
         // Reset the mock
@@ -44,7 +44,7 @@ final class CustomCheckOutTest extends TestCase
         $GLOBALS['post'] = new stdClass(); // Mock the $post object
         $GLOBALS['post']->post_type = 'cartflows_step';
         $expectedResult = false;
-        $actualResult = has_custom_checkout();
+        $actualResult = $this->has_custom_checkout();
         assertEquals($expectedResult, $actualResult, "Should return false with Cartflows step");
 
         // Reset the mock
@@ -55,7 +55,7 @@ final class CustomCheckOutTest extends TestCase
             return false;
         });
         $expectedResult = false;
-        $actualResult = has_custom_checkout();
+        $actualResult = $this->has_custom_checkout();
         assertEquals($expectedResult, $actualResult, "Should respect filter override");
 
         // Remove the filter
