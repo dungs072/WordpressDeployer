@@ -208,10 +208,10 @@ class WooCommerceCheckout {
 			$has_custom_checkout = false;
 		}
 
-		$has_custom_checkout = apply_filters(
-			'blocksy:woocommerce:checkout:has-custom-markup',
-			$has_custom_checkout
-		);
+		// $has_custom_checkout = apply_filters(
+		// 	'blocksy:woocommerce:checkout:has-custom-markup',
+		// 	$has_custom_checkout
+		// );
 
 		return $has_custom_checkout;
 	}
