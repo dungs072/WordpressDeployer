@@ -15,16 +15,11 @@ final class ImportantClassExistTest extends TestCase
 {
     public function test_database_class_exists()
     {
-        if (class_exists('Blocksy\Database')) {
-            echo "MyClass exists!\n";
-        } else {
-            echo "MyClass not found\n";
-        }
-        $this->assertTrue(class_exists('Database'), "Class Database does not exist");
+        $this->assertTrue(class_exists('Blocksy\Database'), "Class Database does not exist");
     }
 
     public function test_WpHooksManager_class_exists()
     {
-        $this->assertTrue(class_exists('WpHooksManager'), "Class WpHooksManager does not exist");
+        $this->assertTrue(class_exists('Blocksy\WpHooksManager'), "Class WpHooksManager does not exist");
     }
 }
