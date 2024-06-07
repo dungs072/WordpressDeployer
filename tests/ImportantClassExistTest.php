@@ -15,7 +15,7 @@ final class ImportantClassExistTest extends TestCase
 {
     public function test_database_class_exists()
     {
-        if (class_exists('Database')) {
+        if (class_exists('Blocksy\Database')) {
             echo "MyClass exists!\n";
         } else {
             echo "MyClass not found\n";
