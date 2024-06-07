@@ -21,15 +21,15 @@ final class CustomCheckOutTest extends TestCase
         $actualResult = $this->has_custom_checkout();
         $this->assertEquals($expectedResult, $actualResult, "Should return true without custom checkout plugins or Cartflows step");
 
-        // // Scenario 2: FluidCheckout exists
-        // class_exists('FluidCheckout', true); // Mock the existence of FluidCheckout class
-        // $expectedResult = false;
-        // $actualResult = $this->has_custom_checkout();
-        // $this->assertEquals($expectedResult, $actualResult, "Should return false with FluidCheckout class");
+        // Scenario 2: FluidCheckout exists
+        print class_exists('FluidCheckout', true); // Mock the existence of FluidCheckout class
+        $expectedResult = false;
+        $actualResult = $this->has_custom_checkout();
+        $this->assertEquals($expectedResult, $actualResult, "Should return false with FluidCheckout class");
 
-        // // Reset the mock
-        // class_exists('FluidCheckout', false);
-
+        // Reset the mock
+        class_exists('FluidCheckout', false);
+    
         // Scenario 3: WFFN_Core exists
         class_exists('WFFN_Core', true); // Mock the existence of WFFN_Core class
         $expectedResult = false;
