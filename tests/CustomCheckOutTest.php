@@ -20,13 +20,13 @@ final class CustomCheckOutTest extends TestCase
         // Scenario 1: No custom checkout plugins or Cartflows step
         $expectedResult = true;
         $actualResult = $this->has_custom_checkout();
-        assertEquals($expectedResult, $actualResult, "Should return true without custom checkout plugins or Cartflows step");
+        $this->assertEquals($expectedResult, $actualResult, "Should return true without custom checkout plugins or Cartflows step");
 
         // Scenario 2: FluidCheckout exists
         class_exists('FluidCheckout', true); // Mock the existence of FluidCheckout class
         $expectedResult = false;
         $actualResult = $this->has_custom_checkout();
-        assertEquals($expectedResult, $actualResult, "Should return false with FluidCheckout class");
+        $this->assertEquals($expectedResult, $actualResult, "Should return false with FluidCheckout class");
 
         // Reset the mock
         class_exists('FluidCheckout', false);
@@ -35,7 +35,7 @@ final class CustomCheckOutTest extends TestCase
         class_exists('WFFN_Core', true); // Mock the existence of WFFN_Core class
         $expectedResult = false;
         $actualResult = $this->has_custom_checkout();
-        assertEquals($expectedResult, $actualResult, "Should return false with WFFN_Core class");
+        $this->assertEquals($expectedResult, $actualResult, "Should return false with WFFN_Core class");
 
         // Reset the mock
         class_exists('WFFN_Core', false);
@@ -45,7 +45,7 @@ final class CustomCheckOutTest extends TestCase
         $GLOBALS['post']->post_type = 'cartflows_step';
         $expectedResult = false;
         $actualResult = $this->has_custom_checkout();
-        assertEquals($expectedResult, $actualResult, "Should return false with Cartflows step");
+        $this->assertEquals($expectedResult, $actualResult, "Should return false with Cartflows step");
 
         // Reset the mock
         $GLOBALS['post'] = null;
@@ -56,10 +56,10 @@ final class CustomCheckOutTest extends TestCase
         });
         $expectedResult = false;
         $actualResult = $this->has_custom_checkout();
-        assertEquals($expectedResult, $actualResult, "Should respect filter override");
+        $this->assertEquals($expectedResult, $actualResult, "Should respect filter override");
 
         // Remove the filter
-        remove_filter('blocksy:woocommerce:checkout:has-custom-markup');
+        //remove_filter('blocksy:woocommerce:checkout:has-custom-markup');
     }
 
     private function has_custom_checkout()
