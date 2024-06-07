@@ -11,6 +11,63 @@ class Blocksy_Footer_Builder {
 			return $this->default_value;
 		}
 
+		$this->default_value = [
+			'current_section' => 'type-1',
+			'sections' => [
+				$this->get_structure_for([
+					'id' => 'type-1',
+					'rows' => [
+						'top-row' => [
+							'columns' => [
+								[],
+								[]
+							]
+						],
+
+						'middle-row' => [
+							'columns' => [
+								[],
+								[],
+								[]
+							]
+						],
+
+						'bottom-row' => [
+							'columns' => [
+								['copyright']
+							]
+						],
+					]
+				]),
+
+				$this->get_structure_for([
+					'id' => 'type-2',
+					'rows' => [
+						'top-row' => [
+							'columns' => [
+								[],
+								[]
+							]
+						],
+
+						'middle-row' => [
+							'columns' => [
+								[],
+								[],
+								[],
+								[]
+							]
+						],
+
+						'bottom-row' => [
+							'columns' => [
+								['copyright']
+							]
+						],
+					]
+				])
+			]
+		];
 
 		return $this->default_value;
 	}

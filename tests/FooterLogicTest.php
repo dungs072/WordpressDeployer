@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
 $filepath = realpath(dirname('wp-content/themes/blocksy/inc/components/builder/builder'));
 require_once($filepath . "/footer-logic.php");
 
-use Blocksy_Footer_Builder;
 
 final class FooterLogicTest extends TestCase
 {
