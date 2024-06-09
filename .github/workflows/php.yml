@@ -16,9 +16,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    
+    - name: Check PHP Version
+      run: php -v
+
+    - name: Check Composer Version
+      run: composer -V
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
+
+
 
     - name: Cache Composer packages
       id: composer-cache
