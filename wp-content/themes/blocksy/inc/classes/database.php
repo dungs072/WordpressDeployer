@@ -2,10 +2,12 @@
 
 namespace Blocksy;
 
-class Database {
+class Database
+{
 	private $mods = '__EMPTY__';
 
-	public function get_theme_mod($name, $default_value = false) {
+	public function get_theme_mod($name, $default_value = false)
+	{
 		if (
 			is_admin()
 			||
@@ -23,13 +25,13 @@ class Database {
 		if (isset($this->mods[$name])) {
 			$value = $this->mods[$name];
 		}
-		
+
 		/** This filter is documented in wp-includes/theme.php */
 		return apply_filters("theme_mod_{$name}", $value);
 	}
 
-	public function wipe_cache() {
+	public function wipe_cache()
+	{
 		$this->mods = '__EMPTY__';
 	}
 }
-
